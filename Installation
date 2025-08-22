@@ -1,0 +1,32 @@
+0. Installing needed tools for FASTDock
+
+In order to use FASTDock you will need to:
+
+Create a conda environment capable of building CHARMM and pyCHARMM
+Install the MMTSB ToolSet from MMTSB. Follow the instructions to install the package.
+Obtain the CHARMM software (free to academics and government labs) from AcademicCHARMM. Follow the directions below to build a conda environment capable of installing CHARMM/pyCHARMM.
+Install CHARMM and pyCHARMM
+1. Creating conda environment to install and use CHARMM/pyCHARMM
+
+Create a conda environment
+
+You will need a base anaconda/miniconda installation: see anaconda installation.
+Make a conda environment (See below for a shortcut using conda env create -f <name_of_environment>.yml)
+conda create -y -n <name_of_environment> python=3.9 # note python can be > 3.9
+
+Activate this environment
+conda activate <name_of_environment>
+
+Install mamba as a faster conda
+conda install -y -c conda-forge mamba
+
+Install CUDA from NVIDIA
+mamba install -y -c nvidia cuda # note this should install CUDA 12.1.1
+
+mamba install -y -c "nvidia/label/cuda-12.0.0" cuda # note this should install CUDA 12.0
+
+You can see available CUDA Toolkit packages (Table 3)
+
+
+
+Install needed packages to build CHARMM and pyCHARMM
