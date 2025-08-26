@@ -1,6 +1,6 @@
-0. Installing needed tools for FASTDock
+0. Installing needed tools for CDOCKER
 
-In order to use FASTDock you will need to:
+In order to use CDOCKER you will need to:
 
 Create a conda environment capable of building CHARMM and pyCHARMM
 Install the MMTSB ToolSet from MMTSB. Follow the instructions to install the package.
