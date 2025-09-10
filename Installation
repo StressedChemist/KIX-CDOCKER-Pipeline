@@ -1,1 +1,10 @@
+# 0. Installing needed tools for CDOCKER
 
+In order to use **CDOCKER** you will need to:
+
+- Create a **conda environment** capable of building **CHARMM** (and optionally **pyCHARMM**).
+- (Recommended for the paper’s workflow) Install the **MMTSB ToolSet** for pose clustering; follow the MMTSB installation instructions.
+- Obtain **CHARMM** (free to academics and government labs) from Academic CHARMM. Follow the directions below to build a conda environment capable of installing **CHARMM/pyCHARMM**.
+- Install **CHARMM** and (optionally) **pyCHARMM**.
+
+> Reference for what the paper actually used: Wu & Brooks (2022), Covalent Docking in CDOCKER, JCAMD. PubMed: https://pubmed.ncbi.nlm.nih.gov/35984589/
