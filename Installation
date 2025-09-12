@@ -1,247 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDOCKER Installation Guide</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 1.6;
-            margin: 0 auto;
-            max-width: 800px;
-            padding: 20px;
-        }
-        .page {
-            border: 1px solid #ddd;
-            padding: 40px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            color: #333;
-        }
-        h1 {
-            font-size: 24px;
-            text-align: center;
-        }
-        h2 {
-            font-size: 20px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 5px;
-            margin-top: 30px;
-        }
-        code {
-            background-color: #f4f4f4;
-            padding: 2px 5px;
-            border-radius: 4px;
-        }
-        pre {
-            background-color: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-        .citation {
-            font-size: 0.9em;
-            color: #666;
-        }
-        .header {
-            text-align: center;
-        }
-        .footer {
-            text-align: right;
-            font-size: 0.8em;
-            color: #888;
-            margin-top: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
+This looks like a request to replicate a document. I can't generate the exact file for you to copy and paste, as I'm an AI assistant, not a file editor. However, I can provide the text from the document in a way that preserves its formatting, including headings, bullet points, and code blocks. This will make it easier for you to copy and paste it into a platform like GitHub.
 
-    <div class="page">
-        <h1 class="header">Everything needed to run</h1>
-        <h1 class="header">CDOCKER</h1>
-        <h2>0. Installing needed tools for CDOCKER</h2>
-        <p>In order to use CDOCKER you will need to:</p>
-        <ul>
-            <li>Create a conda environment capable of building CHARMM (and optionally pyCHARMM).</li>
-            <li>(Recommended for the paper's workflow) Install the MMTSB ToolSet for pose clustering; follow the MMTSB installation instructions.</li>
-            <li>Obtain CHARMM (free to academics and government labs) from Academic CHARMM.</li>
-            <li>Follow the directions below to build a conda environment capable of installing CHARMM/pyCHARMM.</li>
-            <li>Install CHARMM and (optionally) pyCHARMM.</li>
-        </ul>
-        <p>Reference for what the paper actually used: Wu & Brooks (2022), Covalent Docking in CDOCKER, JCAMD.</p>
-        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/35984589/">https://pubmed.ncbi.nlm.nih.gov/35984589/</a></p>
-        <h2>Create a conda environment</h2>
-        <p>You will need a base Anaconda/Miniconda installation.</p>
-        <p>Make a conda environment (you can also use <code>conda env create -f &lt;env&gt;.yml</code> in §2):</p>
-        <pre><code>conda create -y -n &lt;name_of_environment&gt; python $=3.9$ # Python only needed if you'll use pyCHARMM</code></pre>
-        <p>Activate this environment:</p>
-        <pre><code>conda activate &lt;name_of_environment&gt;</code></pre>
-        <div class="footer">Everything needed to run CDOCKER</div>
-    </div>
+-----
 
-    <div class="page">
-        <h2>Install mamba as a faster conda:</h2>
-        <pre><code>conda install -y -c conda-forge mamba</code></pre>
-        <h2>(Optional, GPU) Install CUDA from NVIDIA for OpenMM GPU acceleration</h2>
-        <p># Common choices-pick ONE that matches your system driver (see table below)</p>
-        <pre><code>mamba install -y -c nvidia cuda
-#typically installs CUDA 12.1.1</code></pre>
-        <pre><code>mamba install -y -c "nvidia/label/cuda-12.0.0" cuda # installs CUDA 12.0</code></pre>
-        <p>You can see available CUDA Toolkit packages on the NVIDIA channels. (Driver/Toolkit compatibility table below mirrors the example format.)</p>
-        <h2>Install needed packages to build CHARMM (and match the paper's CDOCKER workflow)</h2>
-        <p>Minimal + paper-faithful (no MPI, no FFTDOCK/BLADE flags):</p>
-        <pre><code>mamba install -y-c conda-forge \
+### Everything needed to run CDOCKER
+
+-----
+
+### **0. Installing needed tools for CDOCKER**
+
+In order to use CDOCKER you will need to:
+
+  * Create a conda environment capable of building CHARMM (and optionally pyCHARMM).
+  * (Recommended for the paper's workflow) Install the **MMTSB ToolSet** for pose clustering; follow the MMTSB installation instructions.
+  * Obtain CHARMM (free to academics and government labs) from **Academic CHARMM**.
+  * Follow the directions below to build a conda environment capable of installing CHARMM/pyCHARMM.
+  * Install CHARMM and (optionally) pyCHARMM.
+
+Reference for what the paper actually used: Wu & Brooks (2022), Covalent Docking in CDOCKER, JCAMD.
+
+**PubMed:** `https://pubmed.ncbi.nlm.nih.gov/35984589/`
+
+#### **Create a conda environment**
+
+You will need a base Anaconda/Miniconda installation.
+
+Make a conda environment (you can also use `conda env create -f <env>.yml` in §2):
+
+```
+conda create -y -n <name_of_environment> python =3.9
+```
+
+`# Python only needed if you'll use pyCHARMM`
+
+Activate this environment:
+
+```
+conda activate <name_of_environment>
+```
+
+-----
+
+### **Install mamba as a faster conda:**
+
+```
+conda install -y -c conda-forge mamba
+```
+
+**(Optional, GPU) Install CUDA from NVIDIA for OpenMM GPU acceleration**
+`# Common choices-pick ONE that matches your system driver (see table below)`
+
+```
+mamba install -y -c nvidia cuda
+```
+
+`#typically installs CUDA 12.1.1`
+
+```
+mamba install -y -c "nvidia/label/cuda-12.0.0" cuda
+```
+
+`# installs CUDA 12.0`
+
+You can see available CUDA Toolkit packages on the NVIDIA channels. (Driver/Toolkit compatibility table below mirrors the example format.)
+
+#### **Install needed packages to build CHARMM (and match the paper's CDOCKER workflow)**
+
+Minimal + paper-faithful (no MPI, no FFTDOCK/BLADE flags):
+
+```
+mamba install -y -c conda-forge \
   gcc gxx gfortran make cmake binutils \
-  openmm rdkit</code></pre>
-        <ul>
-            <li>gcc/gfortran/make/binutils/cmake - toolchain to compile CHARMM.</li>
-            <li>OpenMM enables CHARMM/OpenMM parallel simulated annealing used in the paper.</li>
-            <li>RDKit - ligand conformer generation (paper used ETKDG).</li>
-            <li>You'll obtain CGenFF/ParamChem externally (not on conda) and install MMTSB ToolSet separately if you want the same clustering step.</li>
-        </ul>
-        <h2>Note on CUDA Toolkit/Driver and Compiler Compatibilities</h2>
-        <p>Check the installed CUDA driver on your GPU node with:</p>
-        <div class="footer">Everything needed to run CDOCKER</div>
-        <div class="footer">2</div>
-    </div>
+  openmm rdkit
+```
 
-    <div class="page">
-        <pre><code>nvidia-smi</code></pre>
-        <p>Example (top of the output):</p>
-        <pre><code>+--
+  * `gcc/gfortran/make/binutils/cmake` - toolchain to compile CHARMM.
+  * `OpenMM` enables CHARMM/OpenMM parallel simulated annealing used in the paper.
+  * `RDKit` ligand conformer generation (paper used ETKDG).
+  * You'll obtain CGenFF/ParamChem externally (not on conda) and install **MMTSB ToolSet** separately if you want the same clustering step.
+
+#### **Note on CUDA Toolkit/Driver and Compiler Compatibilities**
+
+Check the installed CUDA driver on your GPU node with:
+
+```
+nvidia-smi
+```
+
+Example (top of the output):
+
+```
++--
 +
 | NVIDIA-SMI 525.85.05 Driver Version: 525.85.05 CUDA Version: 12.0 |
 |---
 +
 +-
-</code></pre>
-        <p>A driver 525.85.05 is compatible with CUDA 12.0, $GCC\ge12.1,$ or Intel Compilers 2021.6.</p>
-        <p>The following table:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Toolkit Version</th>
-                    <th>Minimum Required Driver</th>
-                    <th>Recommended GCC</th>
-                    <th>Recommended Intel Compilers</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>CUDA 12.1.x</td>
-                    <td>$\ge530.30.02$</td>
-                    <td>12.2</td>
-                    <td>2021.7</td>
-                </tr>
-                <tr>
-                    <td>CUDA 12.0.0</td>
-                    <td>$\ge525.85.05$</td>
-                    <td>12.1</td>
-                    <td>2021.6</td>
-                </tr>
-                <tr>
-                    <td>CUDA 11.8.x</td>
-                    <td>$\ge520.61.05$</td>
-                    <td>11</td>
-                    <td>2021</td>
-                </tr>
-                <tr>
-                    <td>CUDA 11.7.x</td>
-                    <td>$\ge515.48.07$</td>
-                    <td>11</td>
-                    <td>2021</td>
-                </tr>
-                <tr>
-                    <td>CUDA 11.6.x</td>
-                    <td>$\ge510.47.03$</td>
-                    <td>11</td>
-                    <td>2021</td>
-                </tr>
-                <tr>
-                    <td>CUDA 11.5.x</td>
-                    <td>$\ge495.29.05$</td>
-                    <td>11</td>
-                    <td>2021</td>
-                </tr>
-                <tr>
-                    <td>CUDA 11.4.x</td>
-                    <td>$\ge470.82.01$</td>
-                    <td>9.x</td>
-                    <td>19.1</td>
-                </tr>
-                <tr>
-                    <td>CUDA 11.3.x</td>
-                    <td>$\ge465.19.01$</td>
-                    <td>9.x</td>
-                    <td>19.1</td>
-                </tr>
-                <tr>
-                    <td>CUDA 11.2.x</td>
-                    <td>$\ge460.32.03$</td>
-                    <td>9.x</td>
-                    <td>19.1</td>
-                </tr>
-                <tr>
-                    <td>CUDA 11.1</td>
-                    <td>$\ge455.32$</td>
-                    <td>9.x</td>
-                    <td>19.1</td>
-                </tr>
-                <tr>
-                    <td>CUDA 11.0</td>
-                    <td>$\ge450.51.06$</td>
-                    <td>9.x</td>
-                    <td>19.1</td>
-                </tr>
-                <tr>
-                    <td>CUDA 10</td>
-                    <td>$\ge440.33$</td>
-                    <td>10.2</td>
-                    <td>18.0</td>
-                </tr>
-                <tr>
-                    <td>CUDA 9</td>
-                    <td>$\ge396.37$</td>
-                    <td>4.8.5</td>
-                    <td>17.0</td>
-                </tr>
-                <tr>
-                    <td>CUDA 8</td>
-                    <td>$\ge375.26$</td>
-                    <td>4.8.2</td>
-                    <td>15, 16</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>(Table presented to match your example's layout.)</p>
-        <div class="footer">Everything needed to run CDOCKER</div>
-        <div class="footer">3</div>
-    </div>
+```
 
-    <div class="page">
-        <h2>2. Building the CHARMM/pyCHARMM compatible environment with a YAML file</h2>
-        <p><code>cdocker_wcuda12.yml</code></p>
-        <pre><code>name: cdocker_wcuda12 # Name of your conda environment
+A driver `525.85.05` is compatible with `CUDA 12.0`, `GCC >=12.1`, or `Intel Compilers 2021.6`.
+
+The following table:
+
+| **Toolkit Version** | **Minimum Required Driver** | **Recommended GCC** | **Recommended Intel Compilers** |
+| :--- | :--- | :--- | :--- |
+| CUDA 12.1.x | $\\ge530.30.02$ | 12.2 | 2021.7 |
+| CUDA 12.0.0 | $\\ge525.85.05$ | 12.1 | 2021.6 |
+| CUDA 11.8.x | $\\ge520.61.05$ | 11 | 2021 |
+| CUDA 11.7.x | $\\ge515.48.07$ | 11 | 2021 |
+| CUDA 11.6.x | $\\ge510.47.03$ | 11 | 2021 |
+| CUDA 11.5.x | $\\ge495.29.05$ | 11 | 2021 |
+| CUDA 11.4.x | $\\ge470.82.01$ | 9.x | 19.1 |
+| CUDA 11.3.x | $\\ge465.19.01$ | 9.x | 19.1 |
+| CUDA 11.2.x | $\\ge460.32.03$ | 9.x | 19.1 |
+| CUDA 11.1 | $\\ge455.32$ | 9.x | 19.1 |
+| CUDA 11.0 | $\\ge450.51.06$ | 9.x | 19.1 |
+| CUDA 10 | $\\ge440.33$ | 10.2 | 18.0 |
+| CUDA 9 | $\\ge396.37$ | 4.8.5 | 17.0 |
+| CUDA 8 | $\\ge375.26$ | 4.8.2 | 15, 16 |
+
+-----
+
+### **2. Building the CHARMM/pyCHARMM compatible environment with a YAML file**
+
+**cdocker\_wcuda12.yml**
+
+```yaml
+name: cdocker_wcuda12 # Name of your conda environment
 channels:
   - conda-forge
   - nvidia/label/cuda-12.0.0 # pin CUDA 12.0 exactly; change as needed
@@ -249,7 +133,7 @@ channels:
 dependencies:
   - python=3.9
   - mamba
-  - cuda
+  - cuda # brings in the CUDA toolkit for GPU OpenMM
   - ca-certificates
   - certifi
   - openssl
@@ -257,93 +141,123 @@ dependencies:
   - gcc
   - gxx
   - gfortran
-  # only needed if you'll use pyCHARMM
-  # brings in the CUDA toolkit for GPU OpenMM
   - make
   - cmake
   - binutils
   # Paper-faithful runtime
-  - openmm
-  - rdkit
-  # CHARMM/OpenMM parallel SA during docking
-  # conformer generation
+  - openmm # CHARMM/OpenMM parallel SA during docking
+  - rdkit # conformer generation
   # (Optional analytics/vis-commented out to keep this lean)
   # - pandas
-  # - mdtraj</code></pre>
-        <div class="footer">Everything needed to run CDOCKER</div>
-        <div class="footer">4</div>
-    </div>
-    
-    <div class="page">
-        <pre><code>  # - biopython
+  # - mdtraj
+  # - biopython
   # - py3dmol
   # - pymol-open-source
   # - jupyterlab
   # - jupytext
-# prefix: /path/to/.conda/envs/cdocker_wcuda12 # optional explicit path
-</code></pre>
-        <p>Install from the YAML:</p>
-        <pre><code>conda env create -f cdocker_wcuda12.yml</code></pre>
-        <p>(You can edit this YAML to change CUDA versions by switching the NVIDIA channel line, as shown above.)</p>
-        <h2>3. CHARMM and pyCHARMM installation once conda environment is installed and active</h2>
-        <h2>Build CHARMM (CDOCKER-ready)</h2>
-        <p>Minimal CPU build (no MPI, no FFTDock/BLADE):</p>
-        <pre><code>conda activate cdocker_wcuda12
-cd &lt;charmm_root&gt;
-mkdir -p build_charmm &amp;&amp; cd build_charmm</code></pre>
-        <p># If OpenMM is installed in this conda env, detection is usually automatic.</p>
-        <p># If needed, you can help the build find it:</p>
-        <pre><code>export OPENMM_HOME="\$CONDA_PREFIX"</code></pre>
-        <p># Minimal CPU build for CDOCKER (no FFTDOCK/BLADE/MPI)</p>
-        <div class="footer">Everything needed to run CDOCKER</div>
-        <div class="footer">5</div>
-    </div>
+  # prefix: /path/to/.conda/envs/cdocker_wcuda12 # optional explicit path
+```
 
-    <div class="page">
-        <pre><code>../configure -u -p &lt;charmm_install_path&gt;
-make -j &lt;n&gt; install</code></pre>
-        <p>OpenMM-enabled build (recommended to match Wu & Brooks, 2022):</p>
-        <pre><code>conda activate cdocker_wcuda12
-cd &lt;charmm_root&gt;/build_charmm
-# Help configure find OpenMM from conda if necessary
-export OPENMM_HOME="\$CONDA_PREFIX"
-# Build with OpenMM support, still without FFTDock/BLADE/MPI
-../configure --with-openmm -u -p &lt;charmm_install_path&gt;
-make -j &lt;n&gt; install</code></pre>
-        <p>&lt;charmm_root&gt; is the path to the CHARMM source tree.</p>
-        <p>&lt;charmm_install_path&gt; is where you want the CHARMM installation to live.</p>
-        <p>&lt;n&gt; is the number of build threads.</p>
-        <h2>Why no --with-fftdock or --with-blade here?</h2>
-        <p>Those are separate CHARMM features not required for Rigid CDOCKER; the paper did not rely on them.</p>
-        <p>The recommended path is to enable OpenMM so you can use CHARMM/OpenMM parallel simulated annealing during docking.</p>
-        <h2>Build pyCHARMM (optional)</h2>
-        <pre><code>conda activate cdocker_wcuda12
-cd &lt;charmm_root&gt;/build_charmm
+Install from the YAML:
+
+```
+conda env create -f cdocker_wcuda12.yml
+```
+
+(You can edit this YAML to change CUDA versions by switching the NVIDIA channel line, as shown above.)
+
+-----
+
+### **3. CHARMM and pyCHARMM installation once conda environment is installed and active**
+
+#### **Build CHARMM (CDOCKER-ready)**
+
+Minimal CPU build (no MPI, no FFTDock/BLADE):
+
+```
+conda activate cdocker_wcuda12
+cd <charmm_root>
+mkdir -p build_charmm && cd build_charmm
+```
+
+`# If OpenMM is installed in this conda env, detection is usually automatic.`
+`# If needed, you can help the build find it:`
+
+```
+export OPENMM_HOME="$CONDA_PREFIX"
+```
+
+`# Minimal CPU build for CDOCKER (no FFTDOCK/BLADE/MPI)`
+
+```
+../configure -u -p <charmm_install_path>
+make -j <n> install
+```
+
+OpenMM-enabled build (recommended to match Wu & Brooks, 2022):
+
+```
+conda activate cdocker_wcuda12
+cd <charmm_root>/build_charmm
+```
+
+`# Help configure find OpenMM from conda if necessary`
+
+```
+export OPENMM_HOME="$CONDA_PREFIX"
+```
+
+`# Build with OpenMM support, still without FFTDock/BLADE/MPI`
+
+```
+../configure --with-openmm -u -p <charmm_install_path>
+make -j <n> install
+```
+
+  * `<charmm_root>` is the path to the CHARMM source tree.
+  * `<charmm_install_path>` is where you want the CHARMM installation to live.
+  * `<n>` is the number of build threads.
+
+#### **Why no `--with-fftdock` or `--with-blade` here?**
+
+Those are separate CHARMM features not required for Rigid CDOCKER; the paper did not rely on them. The recommended path is to enable OpenMM so you can use CHARMM/OpenMM parallel simulated annealing during docking.
+
+#### **Build pyCHARMM (optional)**
+
+```
+conda activate cdocker_wcuda12
+cd <charmm_root>/build_charmm
 rm -rf * # Clean the build directory
-# As a shared library (for pyCHARMM); keep it lean and consistent with above
-export OPENMM_HOME="\$CONDA_PREFIX"
-../configure --as-library --without-mpi --with-openmm -u -p &lt;pycharmm_install_path&gt;</code></pre>
-        <div class="footer">Everything needed to run CDOCKER</div>
-        <div class="footer">6</div>
-    </div>
+```
 
-    <div class="page">
-        <pre><code>make -j &lt;n&gt; install
-# Install the Python bindings
-cd &lt;charmm_root&gt;
-pip install "\$(pwd)/tool/pycharmm"
-# Point pyCHARMM at your CHARMM lib
-export CHARMM_LIB_DIR="&lt;pycharmm_install_path&gt;/lib"</code></pre>
-        <p>&lt;pycharmm_install_path&gt; is where you want the pyCHARMM-ready CHARMM library to reside.</p>
-        <h2>Final notes</h2>
-        <ul>
-            <li>MMTSB ToolSet (for pose clustering) and CGenFF/ParamChem (for ligand topology/parameters) are outside this conda env; install/obtain them separately to replicate the paper's workflow.</li>
-            <li>If you only run CDOCKER from CHARMM scripts (no Python wrapper), you can omit Python/pyCHARMM entirely.</li>
-            <li>If you are CPU-only, skip the CUDA bits; OpenMM still works on CPU.</li>
-        </ul>
-        <div class="footer">Everything needed to run CDOCKER</div>
-        <div class="footer">7</div>
-    </div>
+`# As a shared library (for pyCHARMM); keep it lean and consistent with above`
 
-</body>
-</html>
+```
+export OPENMM_HOME="$CONDA_PREFIX"
+../configure --as-library --without-mpi --with-openmm -u -p <pycharmm_install_path>
+```
+
+-----
+
+### **make -j \<n\> install**
+
+`# Install the Python bindings`
+
+```
+cd <charmm_root>
+pip install "$(pwd)/tool/pycharmm"
+```
+
+`# Point pyCHARMM at your CHARMM lib`
+
+```
+export CHARMM_LIB_DIR="<pycharmm_install_path>/lib"
+```
+
+  * `<pycharmm_install_path>` is where you want the pyCHARMM-ready CHARMM library to reside.
+
+#### **Final notes**
+
+  * **MMTSB ToolSet** (for pose clustering) and **CGenFF/ParamChem** (for ligand topology/parameters) are outside this conda env; install/obtain them separately to replicate the paper's workflow.
+  * If you only run CDOCKER from CHARMM scripts (no Python wrapper), you can omit Python/pyCHARMM entirely.
+  * If you are CPU-only, skip the CUDA bits; OpenMM still works on CPU.
