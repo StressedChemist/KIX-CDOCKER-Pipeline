@@ -16,7 +16,6 @@ Covalent CDOCKER extends the CHARMM-based **Rigid CDOCKER** docking algorithm by
 
 ## References  
 📖 Methodology details: [Covalent Docking in CDOCKER](https://pubmed.ncbi.nlm.nih.gov/35984589/)  
-⚙️ Installation instructions: [Installation guide](https://github.com/StressedChemist/KIX-CDOCKER-Pipeline/blob/main/Installation)  
 
 ## 0. Installing needed tools for CDOCKER
 
